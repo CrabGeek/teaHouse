@@ -99,6 +99,10 @@ export default {
 }
 
 .info-bottom .item-price {
-  color: orangered;
+  color: white;
+}
+
+.info-bottom .item-count {
+  color: white;
 }
 </style>

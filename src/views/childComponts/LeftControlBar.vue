@@ -40,7 +40,7 @@ export default {
   .left-bar {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 30vh;
 }
 
 .bar-item {

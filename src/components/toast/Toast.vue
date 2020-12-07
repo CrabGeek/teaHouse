@@ -1,7 +1,10 @@
 <template>
-  <div class="toast" v-show="theShow">
-    <div>
+  <div class="toast">
+    <div class="theimage">
       <img :src="theItem.image">
+    </div>
+    <div>
+      {{theItem.describe}}
     </div>
     <div>
       <button @click="addToCart">Add to Cart</button>
@@ -18,7 +21,6 @@ export default {
   data() {
     return {
       item: {},
-      isShow: this.theShow,
     };
   },
   props: {
@@ -37,17 +39,17 @@ export default {
   },
   methods: {
     canBtn() {
-      this.theShow = false;
-      this.$emit("toastBtn", this.isShow);
+      this.$emit("toastBtn", false);
     },
     addToCart() {
       const product = {};
+      product.title = this.theItem.title;
       product.image = this.theItem.image;
+      product.price = this.theItem.price;
       product.iid = this.theItem.iid;
       console.log(product);
       this.$store.dispatch("addCart", product).then((res) => {
-        this.theShow = false;
-        this.$emit("toastBtn", this.isShow);
+        this.$emit("toastBtn", false);
       });
     },
   },

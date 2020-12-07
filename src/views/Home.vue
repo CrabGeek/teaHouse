@@ -11,15 +11,15 @@
         <button @click="toCartBtn">Cart({{cartLength}})</button>
       </div>
     </div>
-    <div>
+    <div class="rec">
       Recommended today
     </div>
-    <carousel-3d :inverse-scaling="1500" :space="600" :width="400" :height="400">
+    <carousel-3d :inverse-scaling="1000" :space="600" :width="400" :height="400">
       <slide v-for="(item, i) in recommand" :key="i" :index="item.iid">
         <img :src="item.image" class="theimage"  @click="itemClick(item)">
       </slide>
     </carousel-3d>
-    <div>
+    <div class="tm">
       Menu
     </div>
     <div class="menu">
@@ -30,7 +30,7 @@
         <menu-item :maitItem="subCategoryDataList"></menu-item>
       </scroll>
     </div>
-    <toast :theItem="theItem" :theShow="theShow"></toast>
+    <toast :theItem="theItem" @toastBtn="toastBtn" v-show="theShow"></toast>
   </div>
 </template>
 
@@ -44,6 +44,8 @@ import MenuItem from './childComponts/menuItem.vue';
 import Toast from '@/components/toast/Toast'
 
 import { mapGetters } from "vuex";
+
+import food from '@/common/food'
 
 export default {
   name: 'Home',
@@ -66,30 +68,8 @@ export default {
         path: require("../assets/thlogo.png")
       },
       title : ["Soup", "Appetizer", "Pork", "Sea Food"],
-      subCategoryDataList: {
-        f1: {image: require("../assets/food/soup/download.jpg"), iid: 0},
-        f2: {image: require("../assets/food/soup/images.jpg"),iid: 1},
-        f3: {image: require("../assets/food/soup/images (1).jpg"), iid: 2},
-        f4:{image: require("../assets/food/soup/images (2).jpg"), iid: 3},
-        f5: {image: require("../assets/food/soup/images (3).jpg"),iid: 4},
-        f6: {image: require("../assets/food/soup/images (4).jpg"), iid: 5},
-        f7: {image: require("../assets/food/soup/images (5).jpg"), iid: 6},
-        f8: {image: require("../assets/food/soup/images (6).jpg"), iid: 7},
-        f9: {image: require("../assets/food/soup/images (7).jpg"), iid: 8},
-        f10: {image: require("../assets/food/soup/images (8).jpg"), iid: 9},
-        f11: {image: require("../assets/food/soup/images (9).jpg"), iid: 10},
-        f12: {image: require("../assets/food/soup/images (10).jpg"), iid: 11},
-      },
-      recommand: {
-        f1: {image: require("../assets/food/rec/images.jpg"), iid: 0},
-        f2: {image: require("../assets/food/rec/images (1).jpg"), iid: 1},
-        f3: {image: require("../assets/food/rec/images (2).jpg"), iid: 2},
-        f4: {image: require("../assets/food/rec/images (3).jpg"), iid: 3},
-        f5: {image: require("../assets/food/rec/images (4).jpg"), iid: 4},
-        f6: {image: require("../assets/food/rec/images (5).jpg"), iid: 5},
-        f7: {image: require("../assets/food/rec/images (6).jpg"), iid: 6},
-        f8: {image: require("../assets/food/rec/images (7).jpg"), iid: 7},
-      },
+      subCategoryDataList: food.soup,
+      recommand: food.recommand,
       theItem: {},
       theShow: false,
     }
@@ -98,37 +78,14 @@ export default {
     titleClick(index) {
       console.log(index);
       if (index == 0) {
-          this.subCategoryDataList = {
-          f1: {image: require("../assets/food/soup/download.jpg"), iid: 0},
-        f2: {image: require("../assets/food/soup/images.jpg"),iid: 1},
-        f3: {image: require("../assets/food/soup/images (1).jpg"), iid: 2},
-        f4:{image: require("../assets/food/soup/images (2).jpg"), iid: 3},
-        f5: {image: require("../assets/food/soup/images (3).jpg"),iid: 4},
-        f6: {image: require("../assets/food/soup/images (4).jpg"), iid: 5},
-        f7: {image: require("../assets/food/soup/images (5).jpg"), iid: 6},
-        f8: {image: require("../assets/food/soup/images (6).jpg"), iid: 7},
-        f9: {image: require("../assets/food/soup/images (7).jpg"), iid: 8},
-        f10: {image: require("../assets/food/soup/images (8).jpg"), iid: 9},
-        f11: {image: require("../assets/food/soup/images (9).jpg"), iid: 10},
-        f12: {image: require("../assets/food/soup/images (10).jpg"), iid: 11},
-        }
+          this.subCategoryDataList = food.soup;
+      } else if (index == 1) {
+        this.subCategoryDataList = food.appetizer;
+      } else if (index == 2) {
+        this.subCategoryDataList = food.pork;
+      } else {
+        this.subCategoryDataList = food.seafood;
       }
-      if (index == 1) {
-        this.subCategoryDataList = {
-          f1: {image: require("../assets/food/appetizer/download.jpg") , iid: 12},
-        f2: {image: require("../assets/food/appetizer/download (1).jpg"), iid: 13},
-        f3: {image: require("../assets/food/appetizer/download (2).jpg"), iid: 14},
-        f4:{image: require("../assets/food/appetizer/download (3).jpg"), iid: 15},
-        f5: {image: require("../assets/food/appetizer/images.jpg"), iid: 16},
-        f6: {image: require("../assets/food/appetizer/images (1).jpg"), iid: 17},
-        f7: {image: require("../assets/food/appetizer/images (2).jpg"), iid: 18},
-        f8: {image: require("../assets/food/appetizer/images (3).jpg"), iid: 19},
-        f9: {image: require("../assets/food/appetizer/images (4).jpg"), iid: 20},
-        f10: {image: require("../assets/food/appetizer/images (5).jpg"), iid: 21},
-        f11: {image: require("../assets/food/appetizer/images (6).jpg"), iid: 22},
-        f12: {image: require("../assets/food/appetizer/images (7).jpg"), iid: 23},
-        }
-      } 
     },
     toCartBtn() {
       this.$router.push("/shopcart").catch(err => err);
@@ -137,7 +94,10 @@ export default {
     itemClick(item) {
       this.theItem = item;
       this.theShow = true;
-      console.log(this.theItem);
+      console.log(this.theShow);
+    },
+    toastBtn(s) {
+      this.theShow = s;
     }
   }
 }
@@ -159,11 +119,28 @@ export default {
   line-height: 70px;
   text-align: center;
 }
+.rec {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  text-align: center;
+}
+.tm {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+}
 .menu {
   background-color: #e2e0e0;
   height: calc(100vh - 49px);
-  width: 23%;
+  width: 5%;
   float: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
 }
 .theimage {
   height: 400px;
