@@ -99,6 +99,9 @@ export default {
     toastBtn(s) {
       this.theShow = s;
     }
+  },
+  beforeCreate: function() {
+      document.body.className = 'home';
   }
 }
 </script>

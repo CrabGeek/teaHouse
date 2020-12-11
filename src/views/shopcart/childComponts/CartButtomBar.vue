@@ -5,7 +5,7 @@
       <span>Select All</span>
     </div>
     <div class="price">total: {{totalPrice}}</div>
-    <div class="calculate">check{{checkLength}}</div>
+    <div class="calculate" @click="checkOrder">check{{checkLength}}</div>
     <div class="return-home" @click="rehomePage">return to home page</div>
   </div>
 </template>
@@ -64,6 +64,9 @@ export default {
     },
     rehomePage() {
       this.$router.push("/").catch(err => err);
+    },
+    checkOrder() {
+      this.$router.push("/checkpage").catch(err => err);
     }
   },
 };

@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 const Home = () => import('../views/Home.vue');
 const ShopCart = () => import('../views/shopcart/ShopCart.vue')
+const Checkpage = () => import("../views/checkorder/Checkpage.vue")
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/shopcart',
     name: 'ShopCart',
     component: ShopCart
+  },
+  {
+    path: '/checkpage',
+    name: 'Checkpage',
+    component: Checkpage
   }
 
 ]
