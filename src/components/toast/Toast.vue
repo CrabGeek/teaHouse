@@ -7,6 +7,9 @@
       {{theItem.describe}}
     </div>
     <div>
+      ${{theItem.price}}
+    </div>
+    <div>
       <button @click="addToCart">Add to Cart</button>
     </div>
     <div>
@@ -40,6 +43,7 @@ export default {
   methods: {
     canBtn() {
       this.$emit("toastBtn", false);
+      console.log("False");
     },
     addToCart() {
       const product = {};
